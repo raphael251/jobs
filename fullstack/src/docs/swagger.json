@@ -1,0 +1,162 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Esta é a documentação da API de bots.",
+    "version": "1.0.0",
+    "title": "Documentação dos Bots"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "bots"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/bots": {
+      "post": {
+        "tags": [
+          "bots"
+        ],
+        "summary": "Cadastrar um novo bot",
+        "operationId": "addBots",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Objeto com nome do bot a ser adicionado",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Bots"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Error on creating a new bot."
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "bots"
+        ],
+        "summary": "Obter todos os bots cadastrados",
+        "operationId": "getBots",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "400": {
+            "description": "Error on reading the bots."
+          }
+        }
+      }
+    },
+    "/bots/{id}": {
+      "get": {
+        "tags": [
+          "bots"
+        ],
+        "summary": "Obter um bot específico",
+        "operationId": "getBotById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O id do bot a ser obtido.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Error on reading the specific bot."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "bots"
+        ],
+        "summary": "Atualizar um bot específico",
+        "operationId": "updateBotById",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O id do bot a ser atualizado.",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Dados do bot a ser atualizado",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Bots"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Error on updating the specific bot."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "bots"
+        ],
+        "summary": "Remover um bot específico",
+        "operationId": "delBotById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O id do bot a ser removido.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Error on deleting the bot."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Bots": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

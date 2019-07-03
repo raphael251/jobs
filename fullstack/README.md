@@ -4,29 +4,56 @@
 
 # fullstack challenge
 
-A primeira etapa do nosso processo é um desafio técnico, queremos entender o seu estilo de código, sua linha de raciocínio e como você desenvolveria uma aplicação para o problema proposto.
+## Detalhes de implementação
 
-> Nós avaliaremos sua capacidade de codificar uma solução para o problema proposto, sua organização, capacidade de documentação e testes aplicados para que sua solução funcione. E claro, avaliaremos a aplicação rodando em algum ambiente. Não se preocupe em apresentar algo complexo, mas sim, algo que seja organizado, que resolva o problema e que nos mostre o tipo de programador que você é.
+- Linguagem utilizada: 
+  - Javascript;
 
-## Desafio:
+- Stack:
+  - NodeJS
+  - ExpressJS;
+  - PostgreSQL;
 
-Implemente uma API para nossos bots. Todos os usuários serão considerados como anônimos e consequentemente eles não precisam ser registrados ou estarem logados.
+- Outras libs utilizadas: 
+  - Sequelize: ORM utilizado para criação e manipulação do banco de dados, utilizando o padrão Code First, onde eu criei o banco de dados a partir dos objetos Javascript.
+  - Mocha: Módulo para criação dos testes. Utilizei o Módulo 'Assert' que vem embutido no Node para realização das asserções em cada caso dos testes.
+  - Axios: Módulo utilizado para a realização das requisições http nos casos de teste.
 
+## Rodando o projeto
 
-A API deve ser capaz de:
+- Após a instalação dos módulos com o comando _npm install_, você pode rodar o projeto e em seguida os testes.
+- Para rodar o projeto, basta rodar o comando _npm start_.
+- Para rodar os testes, _npm test_.
 
-- Registrar, retornar, atualizar e deletar um bot;
-- Registrar novas mensagens;
-- Retornar uma mensagem pelo seu identificador único;
-- Retornar todas as mensagens de uma determinada conversa;
+## Descrição do processo
 
-Comente os detalhes de sua implementação. Sinta-se livre para escolher qualquer stack de desenvolvimento (linguagem de programação, banco de dados, ferramentas de testes, etc.) 
-Descreva os detalhes de engenharia de software que você utilizou nesta implementação (construção, implementação, escalabilidade, tolerância de falhas, testes, etc.) Descreva tudo isso mesmo que você não tenha tempo de implementar todos estes detalhes.
+Assim que li a descrição do desafio, já percebi que haviam detalhes faltantes nos requisitos, algo que seria necessário ser pesquisado e definido previamente, como por exemplo o que viria a ser cada bot exatamente e as informações necessárias nos registros de cada um deles. Desta forma, acabei seguindo apenas com a informação de nome do bot. Acabei definindo também que cada chat (conversa) pertence a um bot e como estava especificado, cada mensagem pertence a uma conversa. Fiz a distinção da origem da mensagem (podendo ter sido emitida pelo bot ou pelo usuário) através de um campo no registro da própria mensagem, chamado sentByUser, onde caso não tenha sido enviado pelo usuário, partiu do bot.
 
-## Entrega
+Após definir isso criei um diagrama simples para poder me direcionar a partir dele, algo parecido com um Diagrama Entidade Relacionamento. No mesmo diagrama, coloquei também todos os endpoints a serem criados para acessar cada um dos recursos.
 
-* Implemente o desafio na sua conta no Github;
-* Conclua e suba os arquivos para o seu repositório no Github;
-* Envie um e-mail para <a href="mailto:andre.almeida@sabion.com.br">andre.almeida@sabion.com.br</a> e nos informe a url do seu fork.
+Comecei a programação de fato a partir dos modelos, criando conforme havia definido no diagrama, utilizando o sequelize. O banco de dados que escolhi foi o PostgreSQL, pois já tenho cadastro em um servidor gratuito para poucos acessos.
 
-_Um até logo e boa sorte!_
+Após isso, defini o servidor com o express, e parti para criação dos controllers, pois estou organizando os arquivos com um padrão próximo do MVC. Cada arquivo da pasta controllers contém uma rota base, que seria a /bots, /chats e /messages. Também estou seguindo os padrões para a criação de APIs REST, onde são utilizados os métodos http de forma correta.
+
+Decidi utilizar o padrão TDD, criando os casos de teste antes mesmo de definir completamente cada um dos controllers e consequentemente das rotas.
+
+Após a criação dos casos de teste dos bots, criei as rotas dos bots, depois fiz o mesmo com os chats e mensagens.
+
+Os casos de teste criados não cobrem totalmente todas as rotas, eu apenas criei os essenciais que garantem o mínimo funcionamento, mas poderia criar testes para garantir que, caso alguma informação faltasse ou fosse enviado de forma errada, a aplicação responderia de forma adequada retornando o erro específico.
+
+Já tive a experiência de utilizar um outro framework chamado Hapi.js que facilita muito nessa questão e validação, e até na documentação da API, porém existem pontos de implementação que não me lembro no momento e não ficaria da forma que eu gostaria.
+
+Em questão de escalabilidade, sei que essa arquitetura e organização não seria a mais eficiente, pois o ideal seria a divisão em arquivos menores, e que esses arquivos pudessem ser carregados de forma dinâmica, porém é algo que eu nunca criei e levaria um tempo maior para planejar.
+
+Por fim, implementei também o início de uma documentação, contendo apenas a documentação para o CRUD dos bots, porém não está 100% completa, faltando a definição do status de sucesso de cada um dos métodos http. A url padrão para visualização da documentação é "localhost:3000/", para utilizar em outra url é necessário alterar a base_url no arquivo "src/docs/swagger.json".
+
+Dentro da mesma pasta "docs/", também está o arquivo contendo o diagrama inicial que eu citei, contendo as entidades e os endpoints em meu primeiro planejamento. O diagrama foi criado utilizando uma ferramenta online [Draw.io](https://www.draw.io).
+
+## Banco de dados
+
+Estou incluíndo nos arquivos que serão enviados ao github o arquivo de configuração para acesso ao BD, porém sei que em um projeto real, isso não pode ser feito de forma alguma. Após análise do projeto, estarei retirando a pasta _config/_.
+
+Em caso de alguma dúvida, fico à disposição! 
+
+_Até mais!_
+
