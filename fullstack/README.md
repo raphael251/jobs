@@ -24,6 +24,7 @@
 - Após a instalação dos módulos com o comando _npm install_, você pode rodar o projeto e em seguida os testes.
 - Para rodar o projeto, basta rodar o comando _npm start_.
 - Para rodar os testes, _npm test_.
+- Para ver a documentação, acesse _localhost:3000/api-docs_.
 
 ## Descrição do processo
 
