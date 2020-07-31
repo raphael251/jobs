@@ -6,6 +6,10 @@
 
 *Data aproximada da criação do projeto: 03/07/2019*
 
+## Propósito da aplicação
+
+Essa aplicação foi criada para fins de avaliação de código para uma vaga de desenvolvedor júnior na Sabion Ditial. Talvez sejam implementadas novas funcionalidades ao projeto com o passar do tempo.
+
 ## Detalhes de implementação
 
 - Linguagem utilizada: 
