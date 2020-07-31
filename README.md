@@ -4,6 +4,8 @@
 
 # fullstack challenge
 
+*Data aproximada da criação do projeto: 03/07/2019*
+
 ## Detalhes de implementação
 
 - Linguagem utilizada: 
